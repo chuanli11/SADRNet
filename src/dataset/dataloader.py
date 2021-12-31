@@ -79,15 +79,19 @@ class FaceRawDataset:
         self.test_data = []
 
     def add_image_data(self, data_dir, add_mode='train', split_rate=0.8, save_posmap_num=0):
+        print('i am here')
         all_data = []
         saved_num = 0
         if os.path.exists(f'{data_dir}/all_image_data.pkl'):
             all_data = self.load_image_data_paths(data_dir)
+            print(all_data)
         else:
             for root, dirs, files in os.walk(data_dir):
+                print(dirs)
                 dirs.sort()  # keep order in linux
                 for dir_name in dirs:
                     image_name = dir_name
+                    print(root + '/' + dir_name + '/' + image_name + '.jpg')
                     if not os.path.exists(root + '/' + dir_name + '/' + image_name + '.jpg'):
                         print('skip ', root + '/' + dir_name)
                         continue
